@@ -119,7 +119,8 @@ public final class HaloRenderer {
 			float pz = (float) (Math.sin(angle) * RING_RADIUS * 1.6f);
 			buffer.vertex(model, px, 0.01f, pz).color(255, 40, 30, 0).next();
 		}
-		BufferRenderer.drawWithGlobalProgram(buffer.end());
+		buffer.end();
+		BufferRenderer.draw(buffer);
 
 		// Сам нимб — объёмное красное кольцо (тор), идеально круглое сверху.
 		buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
@@ -137,7 +138,8 @@ public final class HaloRenderer {
 				addTorusVertex(buffer, model, theta1, phi2, glowAlpha);
 			}
 		}
-		BufferRenderer.drawWithGlobalProgram(buffer.end());
+		buffer.end();
+		BufferRenderer.draw(buffer);
 	}
 
 	private static void addTorusVertex(BufferBuilder buffer, Matrix4f model, double theta, double phi, int alpha) {
