@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.BufferRenderer;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
@@ -120,7 +119,7 @@ public final class HaloRenderer {
 			buffer.vertex(model, px, 0.01f, pz).color(255, 40, 30, 0).next();
 		}
 		buffer.end();
-		BufferRenderer.draw(buffer);
+		tessellator.draw();
 
 		// Сам нимб — объёмное красное кольцо (тор), идеально круглое сверху.
 		buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
@@ -139,7 +138,7 @@ public final class HaloRenderer {
 			}
 		}
 		buffer.end();
-		BufferRenderer.draw(buffer);
+		tessellator.draw();
 	}
 
 	private static void addTorusVertex(BufferBuilder buffer, Matrix4f model, double theta, double phi, int alpha) {
